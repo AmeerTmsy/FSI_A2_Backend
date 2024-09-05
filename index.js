@@ -23,7 +23,7 @@ app.use('/books', bookRoutes)
 app.use('/authers', autherRoutes)
 app.use('/users', userRoutes)
 app.use('/auth', authRoutes)
-app.use('/genres', bookGenreRoutes)
+app.use('/genres', bookGenreRoutes) 
  
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
