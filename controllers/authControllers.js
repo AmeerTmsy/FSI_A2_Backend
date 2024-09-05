@@ -16,7 +16,7 @@ const login = async (req, res) => {
         const token = jwt.sign(
             { _id: user._id, email: user.email, name: user.name },  
             process.env.TOKEN_SECRET ); 
-        res.cookie('token', token, { httpOnly: true, secure: process.env.ENVIRONMENT === 'development' ? false : true, maxAge: 1*60*60*1000})
+        res.cookie('token', token, { httpOnly: true, secure: process.env.ENVIRONMENT === 'development' ? false : true, maxAge: 1*60*60*1000, sameSite: "None"})
         res.status(202).json({_id: user._id, email: user.email, name: user.name})
     } else {
         res.status(404).json({massage:"password is incorrect"})
