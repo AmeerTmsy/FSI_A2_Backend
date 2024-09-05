@@ -10,8 +10,17 @@ const authRoutes = require('./routes/authRoutes')
 const bookGenreRoutes = require('./routes/bookGenreRoutes')
 const app = express()
 const port = 3000
- 
-app.use(cors({origin: true, credentials: true})) 
+
+let allowedOrigins = [];
+if (process.env.ENVIRONMENT === 'development') {
+  allowedOrigins = [`http://localhost:5173`, `http://localhost:5174`];
+} else if (process.env.ENVIRONMENT === 'production') {
+  allowedOrigins = [`https://fsi-a1-fontend.vercel.app`, `https://fsi-a1-admin-page.vercel.app`];
+}
+
+app.use(cors({credentials: true,
+  origin: allowedOrigins
+})) 
 app.use(express.json())
 app.use(cookieParser())
 
